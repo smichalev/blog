@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статья: <%=article.title%></title>
+    <link rel="stylesheet" href="/../css/main.css">
+    <script src="/../js/main.js" defer></script>
+</head>
+<body>
+   <header>
+       <span id="logo">blogname</span>
+       <span id="add"><i class="fas fa-bullhorn"></i> Добавить пост</span>
+   </header>
+   <div class="story">
+    <h1><%=article.title%></h1>
+    <% 
+       function numeral(number, titles) {  
+            cases = [2, 0, 1, 1, 1, 2];  
+            return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];  
+       }
+       function correct(e){
+        if(e<10){
+            return e = '0'+e;
+        } else {
+            return e;
+        }
+    } %>
+    <% var time = correct(article.date.getHours())+':'+correct(article.date.getMinutes())+' '+correct(article.date.getDate())+'.'+correct(article.date.getMonth())+'.'+article.date.getFullYear() %>    
+    <p class="p1"><%=article.content%></p>
+      </div>
+      <div class="storyFooter">
+          <div id="storyInfo">
+               <img src="https://cs13.pikabu.ru/images/previews_comm/2019-05_2/1557093269160899767.jpg" class="storyAvatar">
+               <div class="cnt">
+                   <span class="option right"><a class="btn small" onclick="edit(<%=article.id%>)" title="Редактировать"><i class="fas fa-edit"></i> Редактировать</a><a class="btn small" onclick="remove(<%=article.id%>)" title="Удалить"><i class="fas fa-trash"></i> Удалить</a></span>
+                   <div class="name">Грут</div>
+                   <div class="postInfo down"><span title="Дата публикации поста"><%=time%></span><% if(article.edit != 0){%>&nbsp;·&nbsp;<span title="Последнее редактирование">Редактировался&nbsp;<%=article.edit%>&nbsp;<%= numeral(article.comment, ['раз', 'раза', 'раз'])%></span><% } %></div>
+               </div>
+               </div>
+      </div>
+      <div class="page">
+       <% if(article.comment==0){%>
+       <h2>В данной теме нет комментариев</h2>
+       <p>Будете первым?</p>
+       <%} else {%>
+       <h2><%=article.comment%> <%= numeral(article.comment, ['комментарий', 'комментария', 'комментариев'])%></h2>
+       <%}%>
+       <button class="ci" id="addComment"><i class="fas fa-comment-medical"></i> Ответить в тему</button>
+       <% if(article.comment>0){%>
+       <div id="blockComments">
+        <div id="blockComment">
+               <img src="https://cs13.pikabu.ru/images/previews_comm/2019-05_2/1557093269160899767.jpg" class="avatar"><div class="cnt"><div><b>Грут</b> <span class="postInfo">12:57 06.04.2019</span> <a href="" class="rp">Ответить</a> <a href="" class="rp right">Удалить</a></div>
+               <p>Всем привет!</p>
+               <div id="blockComment" class="reply">
+               <img src="https://vignette.wikia.nocookie.net/disney/images/1/1d/Abu.jpg/revision/latest?cb=20160105083740&path-prefix=ru" class="avatar"><div class="cnt"><div><b>Абу</b> <span class="postInfo">13:17 06.04.2019</span> <a href="" class="rp">Ответить</a>  <a href="" class="rp right">Удалить</a></div>
+               <p>sup /b/</p>
+                 <div id="blockComment" class="reply">
+               <img src="https://vignette.wikia.nocookie.net/disney/images/1/1d/Abu.jpg/revision/latest?cb=20160105083740&path-prefix=ru" class="avatar"><div class="cnt"><div><b>Абу</b> <span class="postInfo">13:17 06.04.2019</span> <a href="" class="rp">Ответить</a>  <a href="" class="rp right">Удалить</a></div>
+               <p>гавно жопа</p>
+               </div>
+               </div>
+               </div>
+               </div>
+           </div>
+           </div>
+           <div id="blockComment">
+               <img src="https://cs13.pikabu.ru/images/previews_comm/2019-05_2/1557093269160899767.jpg" class="avatar"><div class="cnt"><div><b>Грут</b> <span class="postInfo">12:59 06.04.2019</span> <a href="" class="rp">Ответить</a>  <a href="" class="rp right">Удалить</a></div>
+               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus atque maxime mollitia deleniti. Modi facere voluptatum minima blanditiis, quaerat explicabo quidem omnis? Natus impedit nihil dolorem debitis officia laudantium voluptates!</p>
+               </div>
+           </div>
+        </div>
+       <% } %>
+    </div></div>
+</body>
+</html>
