@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать пост</title>
+    <link rel="stylesheet" href="/../css/main.css">
+    <script src="/../js/main.js" defer></script>
+</head>
+<body>
+   <header>
+       <span id="logo">blogname</span>
+       <span id="add"><i class="fas fa-bullhorn"></i> Добавить пост</span>
+   </header>
+   <div class="page">
+    <h1>Редактировать пост</h1>
+    <form method="post">
+    Заголовок:<br>
+    <input type="text" value="<%=article.title%>" autocomplete="off" name="title"><br>
+    Текст статьи:<br>
+    <textarea cols="30" rows="10" name="content"><%=article.content%></textarea><br>
+    <input type="submit" value="Отправить" class="btn post">
+     </form>
+    </div>
+</body>
+</html>
