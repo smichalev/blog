@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка</title>
+    <link rel="stylesheet" href="/../css/main.css">
+    <script src="/../js/main.js" defer></script>
+</head>
+<body>
+  <header>
+      <span id="logo">blogname</span>
+      <span id="add"><i class="fas fa-bullhorn"></i> Добавить пост</span>
+   </header>
+   <div class="page center">
+    <h1><%=title%></h1>
+    <% if(title=="Ошибка 404"){ %>
+               <img src="https://vk.com/sticker/1-12678-128">
+    <% } if(error=="Некорректный запрос" || error=="По какой-то причине не удалось отправить пост. Возможно нет соединения с базой данных.") { %>
+                <img src="https://vk.com/sticker/1-12684-128">
+    <% } if(error=="Ты втираешь мне какую-то дичь...") { %>
+                <img src="https://vk.com/sticker/1-12674-128">
+    <% } %>
+  
+    <p><%=error%></p>
+    
+    </div>
+</body>
+</html>
