@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Блог</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+   <header>
+      <span id="logo">blogname</span>
+      <span id="add"><i class="fas fa-bullhorn"></i> Добавить пост</span>
+   </header>
+    <% 
+    function numeral(number, titles) {  
+            cases = [2, 0, 1, 1, 1, 2];  
+            return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];  
+       }
+    function short(e,n){
+        if(e.length>n){
+            return e.substr(0, n)+'...';
+        } else return e;
+    } 
+    function correct(e){
+        if(e<10){
+            return e = '0'+e;
+        } else {
+            return e;
+        }
+    } %>
+    <div class="page">
+    <% for(var i =0; i<list.length;i++){ %>
+    <h1><%=short(list[i].title, 80)%></h1>
+    <span class="postInfo"><%=correct(list[i].date.getHours())+':'+correct(list[i].date.getMinutes())+' '+correct(list[i].date.getDate())+'.'+correct(list[i].date.getMonth())+'.'+list[i].date.getFullYear() %>&nbsp;&middot;
+    <% if(list[i].comment==0){%>
+    Нет комментариев
+    <%} else {%>
+    <%=list[i].comment%> <%= numeral(list[i].comment, ['комментарий', 'комментария', 'комментариев'])%>
+    <%}%>
+    </span>
+    <p><%=short(list[i].content, 350)%></p>
+    <a href="/article/<%=list[i].id%>" class="btn rd">Читать далее...</a>
+    <% if(i!=list.length-1) {%>
+    <hr>
+    <% } } %>
+    </div>
+</body>
+</html>
+
